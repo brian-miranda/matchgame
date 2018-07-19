@@ -1,3 +1,9 @@
+$(document).ready(function() {
+  var $game = $('#game');
+  var values = MatchGame.generateCardValues();
+  MatchGame.renderCards(values, $game);
+});
+
 var MatchGame = {};
 
 /*
@@ -10,22 +16,22 @@ var MatchGame = {};
  */
 
 MatchGame.generateCardValues = function () {
-  var sequentialNumbers = [];
+  var sequentialValues = [];
 
   for (var i = 1; i <= 8; i++) {
-    sequentialNumbers.push(i);
-    sequentialNumbers.push(i);
+    sequentialValues.push(i);
+    sequentialValues.push(i);
   }
 
-  var randomNumbers = [];
+  var cardValues = [];
 
-  while (sequentialNumbers.length > 0) {
-    var randomIndex = Math.floor(Math.random() * sequentialNumbers.length);
-    var randomValue = sequentialNumbers.splice(randomIndex, 1)[0];
-    randomNumbers.push(randomValue);
+  while (sequentialValues.length > 0) {
+    var randomIndex = Math.floor(Math.random() * sequentialValues.length);
+    var randomValue = sequentialValues.splice(randomIndex, 1)[0];
+    cardValues.push(randomValue);
   }
 
-  return randomNumbers;
+  return cardValues;
 
 };
 
@@ -35,6 +41,27 @@ MatchGame.generateCardValues = function () {
 */
 
 MatchGame.renderCards = function(cardValues, $game) {
+  var cardColor = [
+    'hsl(25, 85%, 65%)',
+    'hsl(55, 85%, 65%)',
+    'hsl(90, 85%, 65%)',
+    'hsl(160, 85%, 65%)',
+    'hsl(220, 85%, 65%)',
+    'hsl(265, 85%, 65%)',
+    'hsl(310, 85%, 65%)',
+    'hsl(360, 85%, 65%)'
+  ];
+
+  $game.empty();
+
+  for (var i = cardValues; i < cardValues.length; i++) {
+    var $card = $('<div class="col-xs-3 card"></div>');
+    $card.data('value', i);
+    $card.data('flipped', false);
+    $card.data('color', cardColor[0] + 1);
+  }
+
+  $game.append($card);
 
 };
 
