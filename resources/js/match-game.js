@@ -117,9 +117,11 @@ MatchGame.flipCard = function($card, $game) {
         card2.css('background-color', 'rgb(32, 64, 86)')
             .text('')
             .data('flipped', false);
-      }, 200);
+      }, 250);
     }
+
     $game.data('flippedCards', []);
+
   }
 
 };
@@ -132,12 +134,12 @@ MatchGame.flipCard = function($card, $game) {
  /*
   To do:
 
-  Indicate that the user won when all pairs have been found
-  Add a "Restart Game" button
-  Only allow two cards to be visible at a time (currently the setTimeout allows users to click really quickly and see a few)
-  Change card values to non-number values
-  Add score or time
-  Allow user to select from multiple board sizes
-  Add sound effects
-  Add flipping animations
+    Indicate that the user won when all pairs have been found
+    Add a "Restart Game" button
+    Only allow two cards to be visible at a time (currently the setTimeout allows users to click really quickly and see a few)
+    Change card values to non-number values
+    Add score or time
+    Allow user to select from multiple board sizes
+    Add sound effects
+    Add flipping animations
   */
