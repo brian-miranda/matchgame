@@ -6,32 +6,37 @@ var MatchGame = {};
 */
 
 $(document).ready(function() {
+
   var $game = $('#game');
   var values = MatchGame.generateCardValues();
+
   MatchGame.renderCards(values, $game);
+
 });
 
 /*
   Generates and returns an array of matching card values.
  */
 
-MatchGame.generateCardValues = function () {
-  var sequentialValues = [];
+MatchGame.generateCardValues = function() {
+
+  var numbers = [];
 
   for (var i = 1; i <= 8; i++) {
-    sequentialValues.push(i);
-    sequentialValues.push(i);
+    numbers.push(i);
+    numbers.push(i);
   }
 
   var cardValues = [];
 
-  while (sequentialValues.length > 0) {
-    var randomIndex = Math.floor(Math.random() * sequentialValues.length);
-    var randomValue = sequentialValues.splice(randomIndex, 1)[0];
+  while (numbers.length > 0) {
+    var randomIndex = Math.floor(Math.random() * numbers.length);
+    var randomValue = numbers.splice(randomIndex, 1)[0];
     cardValues.push(randomValue);
   }
 
   return cardValues;
+
 };
 
 /*
@@ -40,6 +45,7 @@ MatchGame.generateCardValues = function () {
 */
 
 MatchGame.renderCards = function(cardValues, $game) {
+
   var cardColors = [
     'hsl(25, 85%, 65%)',
     'hsl(55, 85%, 65%)',
@@ -72,6 +78,7 @@ MatchGame.renderCards = function(cardValues, $game) {
   $('.card').click(function() {
     MatchGame.flipCard($(this), $('#game'));
   });
+
 };
 
 /*
@@ -80,6 +87,7 @@ MatchGame.renderCards = function(cardValues, $game) {
  */
 
 MatchGame.flipCard = function($card, $game) {
+
   if ($card.data('flipped')) {
     return;
   }
@@ -109,8 +117,27 @@ MatchGame.flipCard = function($card, $game) {
         card2.css('background-color', 'rgb(32, 64, 86)')
             .text('')
             .data('flipped', false);
-      }, 400);
+      }, 200);
     }
     $game.data('flippedCards', []);
   }
+
 };
+
+/*
+  Checks to see if all cards are flipped over.
+  This triggers a win condition and also gives a restart option.
+ */
+
+ /*
+  To do:
+
+  Indicate that the user won when all pairs have been found
+  Add a "Restart Game" button
+  Only allow two cards to be visible at a time (currently the setTimeout allows users to click really quickly and see a few)
+  Change card values to non-number values
+  Add score or time
+  Allow user to select from multiple board sizes
+  Add sound effects
+  Add flipping animations
+  */

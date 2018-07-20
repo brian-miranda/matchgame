@@ -40,4 +40,5 @@ h2 {
   font-weight: 900;
   font-size: 7rem;
   color: rgb(255, 255, 255);
+  transition: all, 1s, linear, 0.5s;
 }
